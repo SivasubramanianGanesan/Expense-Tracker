@@ -1,38 +1,164 @@
-.App {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+  margin: 20px;
+  background-color: #f4f6f8; /* Light background */
+  color: #333;
+}
+
+h2, h3, h4 {
+  color: #2c3e50; /* Darker headings */
+  margin-bottom: 10px;
+}
+
+.balance-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.balance h3 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #555;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.balance p {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #27ae60; /* Default balance color */
+  margin: 5px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.income-expense-container {
+  background-color: #fff;
+  padding: 15px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.income-expense-container > div {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.income-expense-container h4 {
+  font-size: 1em;
+  color: #777;
+  margin-top: 0;
+}
+
+.income {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.expense {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.add-transaction-container {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-transaction-container h3 {
+  font-size: 1.1em;
+  margin-top: 0;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+  font-size: 0.9em;
+}
+
+.form-control input[type="text"],
+.form-control input[type="number"],
+.form-control select {
+  width: calc(100% - 22px); /* Adjust for padding */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db; /* Brighter blue */
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.btn:hover {
+  background-color: #2980b9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.history-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.history-container h3 {
+  font-size: 1.1em;
+  margin-top: 0;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+.list li:last-child {
+  border-bottom: none;
+}
+
+.minus {
+  border-right: 5px solid #c0392b;
+  color: #c0392b;
+}
+
+.plus {
+  border-right: 5px solid #27ae60;
+  color: #27ae60;
+}
+
+.list li span {
+  font-weight: bold;
+  font-size: 1.1em;
 }

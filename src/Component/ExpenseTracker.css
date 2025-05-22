@@ -1,0 +1,135 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    overflow: hidden; /* Prevent overall page scrolling */
+}
+
+.container {
+    padding: 15px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+/* Main content grid - now using flex instead of grid */
+.main-content {
+    display: flex;
+    flex: 1;
+    gap: 15px;
+    overflow: hidden;
+    height: calc(100% - 60px);
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Fix flexbox overflow */
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Panel sections */
+.panel-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    overflow: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form styles */
+.add-transaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.form-control {
+    flex: 1;
+}
+
+/* Balance and summary */
+.summary-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.summary-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+/* Transaction list */
+.transaction-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+/* Chart container */
+.chart-container {
+    flex: 1;
+    min-height: 200px;
+    position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .left-panel, .right-panel {
+        flex: none;
+        height: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .summary-container {
+        flex-direction: column;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+}
