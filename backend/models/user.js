@@ -21,11 +21,34 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'users',
       schema: 'public',
       freezeTableName: true,
+
+      hooks: {
+        beforeCreate: async (user) => {
+          user.password = await bcrypt.hash(user.password, 10);
+        },
+
+        beforeUpdate: async (user) => {
+          if (user.changed('password')) {
+            user.password = await bcrypt.hash(user.password, 10);
+          }
+        },
+      },
     }
   );
 
-  User.prototype.validPassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
+  User.prototype.validPassword = async function (password) {
+    const storedPassword = this.password;
+
+    // Recognize standard bcrypt hashes.
+    const isBcryptHash =
+      /^\$2[aby]\$\d{2}\$[./A-Za-z0-9]{53}$/.test(storedPassword);
+
+    if (!isBcryptHash) {
+      // Temporary compatibility for legacy plaintext accounts.
+      return password === storedPassword;
+    }
+
+    return bcrypt.compare(password, storedPassword);
   };
 
   return User;

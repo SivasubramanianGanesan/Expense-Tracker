@@ -329,6 +329,50 @@ app.get('/api/transactions', authenticateToken, async (req, res) => {
   }
 });
 
+
+
+/* 6. Delete a transaction belonging to the authenticated user */
+app.delete('/api/transactions/:id', authenticateToken, async (req, res) => {
+  const transactionId = Number(req.params.id);
+
+  if (!Number.isSafeInteger(transactionId) || transactionId <= 0) {
+    return res.status(400).json({
+      message: 'Invalid transaction ID',
+    });
+  }
+
+  try {
+    // Only delete a transaction owned by the logged-in user.
+    const transaction = await Transaction.findOne({
+      where: {
+        id: transactionId,
+        userId: req.userId,
+      },
+    });
+
+    if (!transaction) {
+      return res.status(404).json({
+        message: 'Transaction not found or you do not have permission to delete it',
+      });
+    }
+
+    await transaction.destroy();
+
+    return res.status(200).json({
+      message: 'Transaction deleted successfully',
+      id: transactionId,
+    });
+  } catch (err) {
+    console.error('Delete transaction error:', err);
+
+    return res.status(500).json({
+      message: 'Unable to delete transaction',
+    });
+  }
+});
+
+
+
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
