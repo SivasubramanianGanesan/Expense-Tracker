@@ -1,3 +1,4 @@
+
 'use strict';
 
 const { Model } = require('sequelize');
@@ -17,11 +18,18 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
 
       amount: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(12, 2),
         allowNull: false,
+        validate: {
+          isDecimal: true,
+          min: 0.01,
+        },
       },
 
       type: {
@@ -31,18 +39,28 @@ module.exports = (sequelize, DataTypes) => {
 
       category: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
 
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
+userId: {
+  type: DataTypes.INTEGER,
+  allowNull: true,
+  references: {
+    model: 'users',
+    key: 'id',
+  },
+  onUpdate: 'CASCADE',
+  onDelete: 'CASCADE',
+},
     },
     {
       sequelize,
       modelName: 'Transaction',
       tableName: 'Transactions',
+      timestamps: true,
     }
   );
 

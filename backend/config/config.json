@@ -1,7 +1,8 @@
+
 {
   "development": {
+    "use_env_variable": "DATABASE_URL",
     "username": "postgres",
-    "password": "admin",
     "database": "expense_tracker_db",
     "host": "localhost",
     "port": 5432,
@@ -9,7 +10,6 @@
   },
   "test": {
     "username": "test_user",
-    "password": "test_password",
     "database": "expense_tracker_test_db",
     "host": "localhost",
     "port": 5432,
@@ -17,7 +17,7 @@
     "logging": false
   },
   "production": {
-    "url": "process.env.DATABASE_URL",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
